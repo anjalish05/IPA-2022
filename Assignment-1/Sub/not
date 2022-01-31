@@ -1,0 +1,41 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-965-g55e06db6)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_00000000011c68e0 .scope module, "not_1bit" "not_1bit" 2 3;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /OUTPUT 1 "no";
+o0000000001026fd8 .functor BUFZ 1, C4<z>; HiZ drive
+v00000000011c6e90_0 .net "a", 0 0, o0000000001026fd8;  0 drivers
+v00000000011c70b0_0 .var "no", 0 0;
+E_0000000001024d60 .event edge, v00000000011c6e90_0;
+    .scope S_00000000011c68e0;
+T_0 ;
+    %wait E_0000000001024d60;
+    %load/vec4 v00000000011c6e90_0;
+    %cmpi/e 0, 0, 1;
+    %jmp/0xz  T_0.0, 4;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000000011c70b0_0, 0, 1;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v00000000011c6e90_0;
+    %cmpi/e 1, 0, 1;
+    %jmp/0xz  T_0.2, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000000011c70b0_0, 0, 1;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0, $push;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "not_1bit.v";
