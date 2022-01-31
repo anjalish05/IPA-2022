@@ -1,8 +1,6 @@
 # Assignment 1   
-
-*Note: This is a group assignment.* 
-
-**Deadline:** 29 Jan 2022 11:59 pm 
+Group Assignment 
+My Teammate: Rohan Gupta 
 
 ### Build An ALU
 
@@ -29,16 +27,3 @@ Write a final wrapper ALU unit from where you will call the modules mentioned ab
     Control 2 – AND x and y 
     
     Control 3 – XOR x and y 
-
-**Files to be submitted:**
-
-* Verilog module for each operation 
-* Verilog testbench for each operation – try to test for all or a considerable number of input combinations  
-* Verilog module for the wrapper ALU unit 
-* Verilog testbench for the wrapper ALU unit 
-* A report summarizing your approach and results. Clearly mention the control inputs to the ALU and their corresponding functionality, and the tests you performed in the testbenches. Results should contain the screenshots of the waveforms for each operation on 64-bit inputs. 
-
-
-Do not indulge in any malpractices or plagiarism. Any such malpractice will have serious consequences. 
-
-*Happy coding!* 
