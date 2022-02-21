@@ -1,6 +1,6 @@
 
 
-module RAM(memaddr,memdata,read,write,valM,memerror)
+module RAM(memaddr,memdata,read,write,valM,dmemerror)
 
 input[63:0] memaddr;
 input[63:0] memdata;
@@ -79,13 +79,15 @@ endmodule
 module MEM_write (icode,write);
 
 input [63:0] icode;
-output reg read
+output reg write
 
 case (icode)
-	4'h5, 4'hB, 4'h9:
-		read <= 1'b1;
+	4'h4, 4'hA, 4'h8:
+		write <= 1'b1;
 		 
-	default: read <= 1'b0;
+	default: write <= 1'b0;
 endcase
 
 endmodule
+
+module STAT(instr_valid, icode, dmemerror, )

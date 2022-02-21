@@ -1,0 +1,12 @@
+
+Decode done
+excute somewhat left
+memory done
+Write back left
+
+Testbench of everyone is left
+
+
+Doubts:
+1. Implemetation of clock
+2. Why write back stage depends on clock
