@@ -7,8 +7,8 @@ module and_64bittb;
 	reg signed [63:0]b;
 
 	wire signed [63:0]out;
-
-	and_64bit dut(.a(a),.b(b),.out(out));
+	wire [2:0] cf_and;
+	and_64bit dut(.a(a),.b(b),.out(out).cf_and(cf_and));
 
 	initial begin
 		$dumpfile("and_64bit.vcd");

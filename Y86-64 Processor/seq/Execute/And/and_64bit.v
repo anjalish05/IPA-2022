@@ -4,6 +4,7 @@ module and_64bit(
 	input signed [63:0]a,
 	input signed [63:0]b,
 	output signed [63:0] out
+	output [2:0] cf_and;
 );
 
 genvar i;
@@ -15,4 +16,15 @@ end
 	
 endgenerate
 
+	if (out == 64'd0)) begin
+		cf_and[0] = 1'b1;
+		
+	
+	end else cf_and[0] = 1'b0;
+	
+	if(out[63]==1'b1) begin
+		cf_and[1] = 1'b1;
+	end else cf_and[1] = 1'b0;
+
+	cf_and[2] = 1'b0;
 endmodule

@@ -1,11 +1,11 @@
 `timescale 1ns/1ps
 
-module add_64bit(a, b, out, overflow);	
+module add_64bit(a, b, out, cf_add);	
 
 	input signed [63:0]a ;
 	input signed [63:0]b ;
 	output signed [63:0]out ;
-	output overflow;
+	output [2:0] cf_add;
 
 	wire [64:0]carry;
 
@@ -19,6 +19,17 @@ module add_64bit(a, b, out, overflow);
   	end
   	endgenerate
 
-	xor g2(overflow, carry[64], carry[63]);
+	if (out == 64'd0)) begin
+		cf_add[0] = 1'b1;
+		
+	end
+	else cf_add[0] = 1'b0;
+
+	if(out[63]==1'b1) begin
+		cf_add[1] = 1'b1;
+	end
+	else cf_add[1] = 1'b0;
+
+	xor g2(cf_add[2], carry[64], carry[63]);
 
 endmodule

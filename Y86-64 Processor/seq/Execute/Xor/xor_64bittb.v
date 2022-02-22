@@ -7,8 +7,9 @@ module xor_64bittb;
 	reg signed [63:0]b;
 
 	wire signed [63:0]out;
+	wire [2:0] cf_xor;
 
-	xor_64bit dut(.a(a),.b(b),.out(out));
+	xor_64bit dut(.a(a),.b(b),.out(out),.cf_xor(cf_xor));
 
 	initial begin
 		$dumpfile("xor_64bit.vcd");

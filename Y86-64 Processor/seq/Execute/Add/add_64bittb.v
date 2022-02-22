@@ -7,8 +7,8 @@ module add_64bittb;
 	reg signed [63:0]b;
 
 	wire signed [63:0]out;
-	wire  overflow;
-	add_64bit dut(.a(a), .b(b), .out(out), .overflow(overflow));
+	wire  [2:0] cf_add;
+	add_64bit dut(.a(a), .b(b), .out(out), . cf_add(cf_add));
 
 	initial begin
 		$dumpfile("add_64bit.vcd");
@@ -49,6 +49,6 @@ repeat(2) begin
   end
 
   initial 
-		$monitor("a=%d b=%d out=%d overflow=%b\n",a, b, out, overflow);
+		$monitor("a=%d b=%d out=%d cf_add=%b\n",a, b, out, cf_add);
 
 endmodule

@@ -158,6 +158,10 @@ output[3:0]dstM;
 parameter rsp = 4'h4 ;
 parameter rnone = 4'hF ;
 
+rr and cnd rB
+ir rB
+rsp
+rnone
 
 always @(icode,rA) begin
 

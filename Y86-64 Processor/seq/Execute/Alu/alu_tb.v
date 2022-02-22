@@ -5,10 +5,10 @@ module alu_tb;
 	reg signed [63:0]a;
 	reg signed [63:0]b;
 	wire signed [63:0]out;
-	wire  overflow;
+	wire  [2:0]cf;
 	reg [1:0] control;
 
-	alu dut(.a(a), .b(b), .control(control), .out(out), .overflow(overflow));
+	alu dut(.a(a), .b(b), .control(control), .out(out), .cf(cf));
 
 	
 	initial begin
@@ -58,6 +58,6 @@ module alu_tb;
   end
  
   initial 
-		$monitor("control = %d a=%d b=%d  out=%d  overflow=%b\n",control,a,b,out,overflow);
+		$monitor("control = %d a=%d b=%d  out=%d  cf=%b\n",control,a,b,out,cf);
 
 endmodule

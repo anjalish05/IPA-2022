@@ -8,7 +8,9 @@ input[63:0] aluB
 input[1:0] alufun;
 
 output[63:0] valE;
-output overflow;
+output [2:0]cf;
+
+
 
 
 
@@ -60,5 +62,6 @@ endmodule
 
 
 module set_CC(icode,CC)
+
 endmodule
 
