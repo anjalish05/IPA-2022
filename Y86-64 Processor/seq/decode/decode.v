@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 
 
-module registerfile(dstE,dstM,srcA,srcB,valE,valM,valA,valB);
+module registerfile(clk,dstE,dstM,srcA,srcB,valE,valM,valA,valB);
 
 input [3:0]dstE;
 input [3:0]dstM;
@@ -68,6 +68,18 @@ always @(*) begin
 	
 end
 
+always @(negedge(clk)) begin
+
+	if(dstE != rnone) begin
+		register_file[dstE] <= valE;
+	end
+
+	if(dstM != rnone) begin
+		register_file[dstM] <= valM;
+	end
+	
+end
+
 
 endmodule
 
@@ -96,7 +108,7 @@ always @(icode,rA) begin
 	begin
 		srcA <= rsp;
 	end
-		default: rnone;
+		default: srcA <= rnone;
 	endcase
 	
 end
@@ -127,7 +139,7 @@ always @(icode,rB) begin
 	begin
 		srcA <= rsp;
 	end
-		default: rnone;
+		default: srcA <= rnone;
 	endcase
 	
 end
@@ -135,24 +147,45 @@ end
 endmodule
 
 
-module dstE_logic(icode,rA,dstM);
-
-
-input[3:0]icode;
-input[3:0]rA;
-
-output[3:0]dstM;
-
-endmodule
-
-
-module dstM_logic(icode,rB,dstE);
+module dstE_logic(icode,rB,dstM);
 
 
 input[3:0]icode;
 input[3:0]rB;
 
+output[3:0]dstM;
+
+parameter rsp = 4'h4 ;
+parameter rnone = 4'hF ;
+
+
+always @(icode,rA) begin
+
+	case (icode)
+	
+		: 
+		default: 
+	endcase
+	
+end
+
+endmodule
+
+
+module dstM_logic(icode,rA,dstE);
+
+
+input[3:0]icode;
+input[3:0]rA;
+
 output[3:0]dstE;
 
+always @(icode) begin
+	 case (icode)
+		 : 
+		 default: 
+	 endcase
+	
+end
 endmodule
 

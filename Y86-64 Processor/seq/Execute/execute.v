@@ -29,7 +29,7 @@ input[3:0] icode;
 input[63:0] valB;
 
 output[63:0] aluB;
-
+ 
 endmodule
 
 module ALU_fun(icode,ifun,alufun)

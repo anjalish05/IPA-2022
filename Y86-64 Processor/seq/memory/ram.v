@@ -13,6 +13,10 @@ output reg[63:0] valM;
 output reg memerror;
 
 always @(*) begin
+
+	if (memaddr >= ) begin
+		
+	end
 	if(read && !write) begin
 		valM <= memory[memaddr];
 	end
