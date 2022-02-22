@@ -10,6 +10,9 @@ input[1:0] alufun;
 output[63:0] valE;
 output overflow;
 
+
+
+
 endmodule
 
 module ALU_A(icode,valC,valA,aluA)
@@ -20,6 +23,20 @@ input[63:0] valA;
 
 output[63:0] aluA;
 
+always @(icode,valC,valA) begin
+	
+	case (icode)
+	4'h2,4'h6: 
+		aluA <= valA;
+	4'h5,4'h4,4'h3:
+		aluA <= valA;
+	4'h8,4'hA:
+		aluA <= 64'd8;
+	4'h9,4'hB:
+		aluA <= -64'd8;
+		default: 
+	endcase
+end
 
 endmodule
 
