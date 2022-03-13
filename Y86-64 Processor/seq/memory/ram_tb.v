@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+
 module ram_test;
 
     reg [3:0] icode;
@@ -11,17 +12,16 @@ module ram_test;
     wire read;
     wire write;
 
-    RAM ram1(.memaddr(memaddr),.memdata(memdata),.read(read),.write(write),.valM(valM),.dmemerror(dmemerror));
-    MEM_addr Ma(.icode(icode),.valA(valA),.valE(valE),.memaddr(memaddr));
-    MEM_read Mr(.icode(icode),.read(read));
-    MEM_write Mw(.icode(icode),.write(write));
-    MEM_data Md(.icode(icode),.valA(valA),.valP(valP),.memdata(memdata));    
+    RAM ram1(.memaddr(memaddr), .memdata(memdata), .read(read), .write(write), .valM(valM), .dmemerror(dmemerror));
+    MEM_addr Ma(.icode(icode), .valA(valA), .valE(valE), .memaddr(memaddr));
+    MEM_read Mr(.icode(icode), .read(read));
+    MEM_write Mw(.icode(icode), .write(write));
+    MEM_data Md(.icode(icode), .valA(valA), .valP(valP), .memdata(memdata));    
 
     
     integer k;
     parameter base_addr = 64'hFF;
 
-    
     initial begin
     $dumpfile("ram_test.vcd");
     $dumpvars(0,ram_test);
@@ -45,9 +45,5 @@ module ram_test;
     #20 $finish;
         
     end
-
-    
-    
-
 
 endmodule

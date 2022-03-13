@@ -5,8 +5,26 @@ memory done
 Write back left
 
 Testbench of everyone is left
+1. posegde and negedge problem in decode writeback
+2. Staus block in pipeline blk is left i will look 
+into it later
 
+
+in pipe execute i manipulat set cc conditon
+isteam of!m since state changes only during normal operation
+i am putting normal operatin thing.
 
 Doubts:
-1. Implemetation of clock
 2. Why write back stage depends on clock
+1. How to implement halt instruction. -stop updating pc
+
+2. what are you doing if imeme error is true
+3. what is the diffrencei n conditon al move 
+what is given in ppt abt conditional move abt taking jump
+is cmov exist in y86 how does it work
+
+what is the stat in sequential memory block doing
+
+
+Cause of Erooros 
+Wrong connecton in proc.v like of .dst_M(.dst_M)

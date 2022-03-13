@@ -1,44 +1,49 @@
-# Assignment 1   
+# Intro to Processor Architecture - Project (Spring 2022)
 
-*Note: This is a group assignment.* 
+## 1.Overall Goal (Total Marks - 100)
 
-**Deadline:** 29 Jan 2022 11:59 pm 
+Each group (2 students) must develop a processor architecture design based on the Y86 ISA using Verilog. The design
+should be thoroughly tested to satisfy all the specification requirements using simulations. The project submission
+must include the following
 
-### Build An ALU
+- A report describing the design details of the various stages of the processor architecture, the supported features
+(including simulation snapshots of the features supported) and the challenges encountered. (Marks-15)
+- Verilog code for processor design and testbench
 
-You are expected to build an ALU unit with following functionality: 
+## 2.Specifications
 
-* ADD – 64 bits   
+The required specifications in the processor design are as follows:
 
-* SUB – 64 bits  
+- A bare minimum processor architecture must implement a sequential design as discussed in Section 4.3 of
+textbook. (Marks-25)
+- A full fledged processor architecture implementation with 5 stage pipeline as discussed in Sections 4.4 and 4.5
+of textbook, which includes support for eliminating pipeline hazards. (Marks-40)
 
-* AND – 64 bits 
+Your submission should at least have the first design mentioned above in order to get minimal marks. However, your
+goal should be to submit a design with pipelined architecture so that you score maximum marks.
 
-* XOR – 64 bits 
+### Important points to notice:
+- Both the above implementations must execute all the instructions from Y86 ISA except call and retinstructions
+to get the above mentioned marks.
+- Additional marks if you also execute call and ret instructions. (Marks-10)
 
-You are not allowed to use +, -, &, ^ directly on the 64-bit inputs for 64-bit operations. We expect you to write each of the above modules from scratch. 
+## 3.Design Approach
+The design approach should be modular, i.e., each stage has to be coded as separate modules and tested independently
+in order to help the integration without too many issues.
 
-All input and output should be signed and use 2’s complement for the subtraction. 
+In tutorial sessions, the TAs will discuss with you how to implement the memory block, which can be used in the
+design.
 
-Write a final wrapper ALU unit from where you will call the modules mentioned above based on the control input. The ALU unit takes as input the control signal, and two 64-bit inputs, and returns the 64-bit output corresponding to the control signal chosen. An example with 64-bit inputs x and y: 
+## 4.Targets and Evaluation
 
-    Control 0 - ADD x and y 
+Each group will be evaluated twice during the project - firstly on Feb 15 to understand your progress and give you feedback based on it. (Marks-10)
 
-    Control 1 – Subtract y from x 
+The final evaluation will happen in the 1st or 2nd week of March (dates will be announced later).
 
-    Control 2 – AND x and y 
+## 5.Suggestions for Design Verification
 
-    Control 3 – XOR x and y 
-
-**Files to be submitted:**
-
-* Verilog module for each operation 
-* Verilog testbench for each operation – try to test for all or a considerable number of input combinations  
-* Verilog module for the wrapper ALU unit 
-* Verilog testbench for the wrapper ALU unit 
-* A report summarizing your approach and results. Clearly mention the control inputs to the ALU and their corresponding functionality, and the tests you performed in the testbenches. Results should contain the screenshots of the waveforms for each operation on 64-bit inputs. 
-
-
-Do not indulge in any malpractices or plagiarism. Any such malpractice will have serious consequences. 
-
-*Happy coding!* 
+Please adhere to the following verification approaches as much as possible.
+- You can individually test each stage/module for its intended functionality by creating module specific test
+inputs.
+- Please write an assembly program for any algorithm (e.g., sorting algorithm) using Y86 ISA and the corresponding encoded instructions and use the encoded instructions to test your integrated design.
+- If possible, you can also think of an automated testbench that will help you to verify your design efficiently, i.e., automatically verify the state of the processor and memory after execution of each instruction in the program.

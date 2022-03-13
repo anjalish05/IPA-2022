@@ -1,13 +1,13 @@
 `timescale 1ns/1ps
 
 
-module registerfile(clk,dstE,dstM,srcA,srcB,valE,valM,valA,valB);
+module registerfile(clk, dstE, dstM, srcA, srcB, valE, valM, valA, valB);
 
-input [3:0]dstE;
-input [3:0]dstM;
-input [3:0]srcA;
-input [3:0]srcB;
-
+input [3:0] dstE;
+input [3:0] dstM;
+input [3:0] srcA;
+input [3:0] srcB;
+input clk;
 input [63:0] valE;
 input [63:0] valM;
 
@@ -62,13 +62,13 @@ always @(*) begin
 	end
 
 	if (srcB != rnone) begin
-		valB <= register_file[srcB]
+		valB <= register_file[srcB];
 		
 	end
 	
 end
 
-always @(negedge(clk)) begin
+always @(posedge(clk)) begin
 
 	if(dstE != rnone) begin
 		register_file[dstE] <= valE;
@@ -100,7 +100,7 @@ parameter rnone = 4'hF ;
 always @(icode,rA) begin
 
 	case (icode)
-	4'h2, 4'h3, 4'h6, 4'hA:
+	4'h2, 4'h3,4'h4,4'h5,4'h8,4'h6, 4'hA:
 	begin
 		srcA<= rA;
 	end
@@ -122,7 +122,7 @@ module srcB_logic(icode,rB,srcB);
 input[3:0]icode;
 input[3:0]rB;
 
-output[3:0]srcB;
+output reg[3:0]srcB;
 
 parameter rsp = 4'h4 ;
 parameter rnone = 4'hF ;
@@ -133,13 +133,13 @@ always @(icode,rB) begin
 	case (icode)
 	4'h6, 4'h4, 4'h5:
 	begin
-		srcA<= rB;
+		srcB<= rB;
 	end
 	4'hA, 4'hB, 4'h8, 4'h9:
 	begin
-		srcA <= rsp;
+		srcB <= rsp;
 	end
-		default: srcA <= rnone;
+		default: srcB <= rnone;
 	endcase
 	
 end
@@ -147,28 +147,34 @@ end
 endmodule
 
 
-module dstE_logic(icode,rB,dstM);
-
+module dstE_logic(icode,ifun,rB,cnd,dstE);
 
 input[3:0]icode;
+input [3:0] ifun;
 input[3:0]rB;
-
-output[3:0]dstM;
+input cnd;
+output reg[3:0]dstE;
 
 parameter rsp = 4'h4 ;
 parameter rnone = 4'hF ;
 
-rr and cnd rB
-ir rB
-rsp
-rnone
 
-always @(icode,rA) begin
+always @(icode,ifun,rB,cnd) begin
 
-	case (icode)
-	
-		: 
-		default: 
+	case (icode) 
+
+	4'h2: begin
+		if(cnd==1'b1)
+			dstE <= rB;
+		else
+			dstE <= rnone;
+	end
+
+	4'h3, 4'h6:
+		dstE <= rB;
+	4'hA, 4'hB, 4'h8, 4'h9:
+		dstE <= rsp;
+		default: dstE <= rnone;
 	endcase
 	
 end
@@ -176,18 +182,23 @@ end
 endmodule
 
 
-module dstM_logic(icode,rA,dstE);
+module dstM_logic(icode,rA,dstM);
 
 
 input[3:0]icode;
 input[3:0]rA;
 
-output[3:0]dstE;
+output reg[3:0]dstM;
 
-always @(icode) begin
+
+parameter rsp = 4'h4 ;
+parameter rnone = 4'hF ;
+
+always @(icode,rA) begin
 	 case (icode)
-		 : 
-		 default: 
+	 4'h5, 4'hB: 
+		dstM <= rA;
+		 default: dstM <= rnone;
 	 endcase
 	
 end
